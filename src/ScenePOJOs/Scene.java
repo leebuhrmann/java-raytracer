@@ -14,7 +14,7 @@ public class Scene {
         this.lights = lights;
     }
 
-    public RayTracedModel getModel() {
+    public RayTracedModel getRayTracedModel() {
         return this.rayTracedModel;
     }
 
