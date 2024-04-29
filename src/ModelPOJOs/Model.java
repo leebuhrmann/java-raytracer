@@ -96,6 +96,31 @@ public class Model {
         constructTriangles();
     }
 
+    public Collision getIntersect(Point3 origin, Point3 direction) {
+        float closest = Float.MAX_VALUE;
+        Collision best = null;
+
+        // find the closest intersecction amongst all triangles
+        for (Triangle tri: this.t) {
+            Collision intersection = tri.getCollision(origin, direction);
+            if (intersection != null
+                && best == null
+                || intersection.getTime() < closest
+                ) {
+                
+                    best = intersection;
+                    closest = intersection.getTime();
+            }
+        }
+
+        // return best intersection or null if no intersection exists
+        if (best != null) {
+            return best;
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(); 
