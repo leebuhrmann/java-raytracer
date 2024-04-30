@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
+import ModelPOJOs.Collision;
 import ModelPOJOs.Edge;
 import ModelPOJOs.Model;
 import ModelPOJOs.Point3;
@@ -63,15 +64,25 @@ private Panel panel;
                 buffer.add(getPixel(x,y));
             }
         }
-
         return buffer;
     }
 
     private Pixel getPixel(int x, int y) {
         int startX = x - getWidth() / 2;
         int startY = y - getHeight() / 2;
-        Point3 origin = this.
+        Point3 origin = this.scene.getCamera().getOrigin(startX, startY);
+        Point3 direciton = this.scene.getCamera().getDirection(startX / (getWidth() / 2), startY / (getHeight() / 2));
+
+        Collision closestCollision = this.scene.getRayTracedModel().getModel().getIntersect(origin, direciton);
+        if (closestCollision == null) {
+            return new Pixel(x,y,255,255,255);
+        }
+        else {
+            return new Pixel(x,y,255,255,0);
+        }
     }
+
+
 
     // public void render(Model model) {
     //     this.model = model;
