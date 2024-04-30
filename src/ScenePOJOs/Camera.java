@@ -31,6 +31,8 @@ public class Camera {
             Point3 right = this.direction.getCross(this.up).getNormalized();
             Point3 _up = right.getCross(this.direction).getNormalized(); // this shouldnt be needed i think?
             
+            // System.out.println("up: " + up + " _up: " + _up);
+
             float cos = (float)Math.cos(this.angle); // adj over hypot
             float sin = (float)Math.sin(this.angle); // opp over hypot
 

@@ -68,6 +68,10 @@ public class Point3 {
         return (this.x * p.getX()) + (this.y * p.getY()) + (this.z * p.getZ());
     }
 
+    public String toString() {
+        return String.format("(%f,%f,%f)", x, y, z);
+    }
+
     public Point3 clone() {
         return new Point3(this.x, this.y, this.z);
     }

@@ -103,8 +103,8 @@ public class Model {
         // find the closest intersecction amongst all triangles
         for (Triangle tri: this.t) {
             Collision intersection = tri.getCollision(origin, direction);
-            System.out.println("test: " + intersection);
-            if (intersection != null && (best == null|| intersection.getTime() < closest)) {
+            // System.out.println("intersection: " + intersection); // TODO: for testing
+            if (intersection != null && (best == null || intersection.getTime() < closest)) {
                     best = intersection;
                     closest = intersection.getTime();
             }

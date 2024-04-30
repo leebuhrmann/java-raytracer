@@ -25,9 +25,11 @@ public class App {
         model.scaleModel(100);
         AmbientShader ambientShader = new AmbientShader(50, 0, 0);
         RayTracedModel rayTracedModel = new RayTracedModel(model, ambientShader);
-        Camera camera = new Camera(true, new Point3(0,0,100), new Point3(0,0,-1), new Point3(0,1,0), (float)Math.PI / 4);
+        Camera camera = new Camera(false, new Point3(0,0,100), new Point3(0,0,-1), new Point3(0,1,0), (float)Math.PI / 4);
         Sunlight sunlight = new Sunlight(255, 255, 255, new Point3(0,-1,0));
         Scene scene = new Scene(rayTracedModel, camera, sunlight);
+        // end prepare scene
+
         // Render
         frame.render(scene);
     }

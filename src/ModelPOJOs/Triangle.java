@@ -96,6 +96,7 @@ public class Triangle {
 
         float D = -(ABC.getDot(this.one)); 
         float timeToCollision = (-D - origin.getDot(ABC)) / (direction.getDot(ABC));
+        if (timeToCollision <= 0) return null;
         Point3 collisionLocation = origin.getAdd(direction.getScale(timeToCollision));
 
         Point3 oneCollision = collisionLocation.getSubtract(this.one).getNormalized();
@@ -110,10 +111,17 @@ public class Triangle {
         float j = b.getDot(ABC);
         float k = c.getDot(ABC);
 
+        
+
         if (i < 0 || j < 0 || k < 0) {
+            // System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
+            // System.out.println("no collision...");
             return  null;
         }
         else {
+            System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
+            System.out.println("collision!");
+            // System.exit(0);
             return new Collision(timeToCollision, collisionLocation, ABC);
         }
     }
