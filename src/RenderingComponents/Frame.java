@@ -1,4 +1,5 @@
 package RenderingComponents;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -24,11 +25,9 @@ private Panel panel;
 
     private Scene scene;
     private boolean animate;
-    private boolean perspective;
-    private boolean color;
     private int tick;
 
-    public Frame(boolean animate, boolean perspective, boolean color) {
+    public Frame(boolean animate) {
         setTitle("Lee's Rasterizer");
         setSize(500,500);
         setLocationRelativeTo(null); // null tells this method to center the window
@@ -37,23 +36,30 @@ private Panel panel;
         this.tick = 0;
         this.scene = null;
         this.animate = animate;
-        this.perspective = perspective;
-        this.color = color;
 
         panel = new Panel();
         add(panel);
     }
 
+    // public void render(Scene scene) {
+    //     this.scene = scene;
+    //     center();
+    //     Timer timer = new Timer(16, e -> {
+    //         ArrayList<Pixel> buffer = prepareBuffer();
+    //         panel.setBuffer(buffer);
+    //         panel.repaint();
+    //         this.tick++;
+    //     });
+    //     timer.start();
+    // }
+
     public void render(Scene scene) {
         this.scene = scene;
-        center();
-        Timer timer = new Timer(16, e -> {
-            ArrayList<Pixel> buffer = prepareBuffer();
-            panel.setBuffer(buffer);
-            panel.repaint();
-            this.tick++;
-        });
-        timer.start();
+        // center();
+
+        ArrayList<Pixel> buffer = prepareBuffer();
+        panel.setBuffer(buffer);
+        panel.repaint();
     }
 
     private ArrayList<Pixel> prepareBuffer() {
@@ -63,6 +69,7 @@ private Panel panel;
             for (int x = 0; x < this.getWidth(); x++) {
                 buffer.add(getPixel(x,y));
             }
+            System.out.println("y = " + y);
         }
         return buffer;
     }
@@ -78,7 +85,8 @@ private Panel panel;
             return new Pixel(x,y,255,255,255);
         }
         else {
-            return new Pixel(x,y,0,255,0);
+            Color color = this.scene.getRayTracedModel().getShader().illuminateModel();
+            return new Pixel(x, y, color);
         }
     }
 

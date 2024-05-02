@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class AmbientShader extends Shader {
     
-    public AmbientShader(int r, int g, int b) {
-        super(r,g,b);
+    public AmbientShader(Color color) {
+        super(color);
     }
 
     @Override

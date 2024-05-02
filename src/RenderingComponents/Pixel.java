@@ -1,5 +1,7 @@
 package RenderingComponents;
 
+import java.awt.Color;
+
 public class Pixel {
 
     private int x;
@@ -14,6 +16,14 @@ public class Pixel {
         this.r = r;
         this.g = g;
         this.b = b;
+    }
+
+    public Pixel(int x, int y, Color color) {
+        this.x = x;
+        this.y = y;
+        this.r = color.getRed();
+        this.g = color.getGreen();
+        this.b = color.getBlue();
     }
     
     public int getX() {
@@ -54,6 +64,10 @@ public class Pixel {
 
     public void setB(int b) {
         this.b = b;
+    }
+
+    public Color getColor() {
+        return new Color(this.r,this.g,this.b);
     }
 
     public String toString() {

@@ -111,17 +111,14 @@ public class Triangle {
         float j = b.getDot(ABC);
         float k = c.getDot(ABC);
 
-        
-
         if (i < 0 || j < 0 || k < 0) {
             // System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
             // System.out.println("no collision...");
             return  null;
         }
         else {
-            System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
-            System.out.println("collision!");
-            // System.exit(0);
+            // System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
+            // System.out.println("collision!");
             return new Collision(timeToCollision, collisionLocation, ABC);
         }
     }

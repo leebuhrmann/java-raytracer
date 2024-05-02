@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import ModelPOJOs.Model;
 import ModelPOJOs.Point3;
 import ModelPOJOs.RayTracedModel;
@@ -6,11 +8,12 @@ import ScenePOJOs.Camera;
 import ScenePOJOs.Scene;
 import ScenePOJOs.Lights.Sunlight;
 import ScenePOJOs.Shaders.AmbientShader;
+import ScenePOJOs.Shaders.DiffuseShader;
 
 public class App {
     public static void main(String[] args) throws Exception {
         // Create window
-        Frame frame = new Frame(false, true, true);
+        Frame frame = new Frame(false);
         frame.setVisible(true);
         // end create window
 
@@ -23,7 +26,8 @@ public class App {
 
         // Prepare Scene
         model.scaleModel(100);
-        AmbientShader ambientShader = new AmbientShader(50, 0, 0);
+        AmbientShader ambientShader = new AmbientShader(new Color(0,50,0));
+        // DiffuseShader diffuseShader = new DiffuseShader(new Color(0,50,0), new Point3(0,0,1));
         RayTracedModel rayTracedModel = new RayTracedModel(model, ambientShader);
         Camera camera = new Camera(false, new Point3(0,0,100), new Point3(0,0,-1), new Point3(0,1,0), (float)Math.PI / 4);
         Sunlight sunlight = new Sunlight(255, 255, 255, new Point3(0,-1,0));
