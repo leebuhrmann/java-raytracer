@@ -33,13 +33,13 @@ public class Camera {
             
             // System.out.println("up: " + up + " _up: " + _up);
 
-            float cos = (float)Math.cos(this.angle); // adj over hypot
-            float sin = (float)Math.sin(this.angle); // opp over hypot
+            // float cos = (float)Math.cos(this.angle); // adj over hypot
+            // float sin = (float)Math.sin(this.angle); // opp over hypot
 
-            Point3 xOffset = right.getScale(x).getScale(sin);
-            Point3 yOffset = up.getScale(y).getScale(sin);
+            // Point3 xOffset = right.getScale(x).getScale(sin);
+            // Point3 yOffset = up.getScale(y).getScale(sin);
 
-            Point3 pDirection = this.direction.getScale(cos).getAdd(xOffset).getAdd(yOffset).getNormalized(); // calculated direction with perspective
+            // Point3 pDirection = this.direction.getScale(cos).getAdd(xOffset).getAdd(yOffset).getNormalized(); // calculated direction with perspective
             return pDirection;
         }
         else { // false == orthographic
