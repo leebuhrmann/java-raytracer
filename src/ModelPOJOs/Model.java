@@ -100,14 +100,17 @@ public class Model {
         float closest = Float.MAX_VALUE;
         Collision best = null;
 
+        int count = 0;
         // find the closest intersecction amongst all triangles
         for (Triangle tri: this.t) {
+            System.out.printf("Triangle: %d\n", count);
             Collision intersection = tri.getCollision(origin, direction);
             // System.out.println("intersection: " + intersection); // TODO: for testing
             if (intersection != null && (best == null || intersection.getTime() < closest)) {
                     best = intersection;
                     closest = intersection.getTime();
             }
+            count++;
         }
 
         // return best intersection or null if no intersection exists

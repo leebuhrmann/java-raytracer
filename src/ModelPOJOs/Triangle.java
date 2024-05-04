@@ -79,8 +79,8 @@ public class Triangle {
     }
 
     public String toString() {
-        return String.format("one: (%f,%f), two: (%f,%f), three: (%f,%f)", 
-                            one.getX(), one.getY(), two.getX(), two.getY(), three.getX(), three.getY());
+        return String.format("{\n\tone: %s\n\ttwo: %s\n\tthree: %s\n}", 
+                            one, two, three);
     }
 
     public Triangle scaleTriangle(int scale) {
@@ -89,14 +89,18 @@ public class Triangle {
 
     public Collision getCollision(Point3 origin, Point3 direction) {
         Point3 ABC = this.getOneTwo().getCross(this.getThreeTwo()).getNormalized();
-
+        System.out.printf("%s\nABC: %s\n", this, ABC);
         if (ABC.getDot(direction) == 0) {
+            System.out.println();
             return null;
         }
 
         float D = -(ABC.getDot(this.one)); 
         float timeToCollision = (-D - origin.getDot(ABC)) / (direction.getDot(ABC));
-        if (timeToCollision <= 0) return null;
+        if (timeToCollision <= 0) {
+            System.out.println();
+            return null;
+        }
         Point3 collisionLocation = origin.getAdd(direction.getScale(timeToCollision));
 
         Point3 oneCollision = collisionLocation.getSubtract(this.one).getNormalized();
@@ -107,18 +111,20 @@ public class Triangle {
         Point3 b = this.getTwoThree().getCross(twoCollision);
         Point3 c = this.getThreeOne().getCross(threeCollision);
 
+        
+
         float i = a.getDot(ABC);
         float j = b.getDot(ABC);
         float k = c.getDot(ABC);
 
         if (i < 0 || j < 0 || k < 0) {
-            // System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
-            // System.out.println("no collision...");
-            return  null;
+            System.out.printf("** (i,j,k) = (%f,%f,%f)\n", i, j, k);
+            System.out.printf("** no collision\n\n");
+            return null;
         }
         else {
-            // System.out.printf("(i,j,k) = (%f,%f,%f)\n", i, j, k);
-            // System.out.println("collision!");
+            System.out.printf("$$$$$\n$$ (i,j,k) = (%f,%f,%f)\n", i, j, k);
+            System.out.printf("$$ collision\n$$$$$\n\n");
             return new Collision(timeToCollision, collisionLocation, ABC);
         }
     }

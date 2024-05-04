@@ -67,7 +67,9 @@ private Panel panel;
 
         for (int y = 0; y < this.getHeight(); y++) {
             for (int x = 0; x < this.getWidth(); x++) {
+                System.out.printf("#####################################\ngetPixel(%d,%d)\n#####################################\n\n",x,y);
                 buffer.add(getPixel(x,y));
+                if (x == 1) return buffer;
             }
             System.out.println("y = " + y);
         }
